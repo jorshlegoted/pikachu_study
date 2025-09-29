@@ -22,5 +22,5 @@ class GetPokemonByNameParams extends Equatable {
   final String name;
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [name];
 }
