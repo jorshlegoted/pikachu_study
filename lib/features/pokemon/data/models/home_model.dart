@@ -5,4 +5,8 @@ final class HomeModel extends Home {
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
       HomeModel(frontDefault: json['front_default'] as String?);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'front_default': frontDefault,
+  };
 }

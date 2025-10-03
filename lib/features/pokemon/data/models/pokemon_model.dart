@@ -11,25 +11,36 @@ final class PokemonModel extends Pokemon {
     required super.baseExperience,
     required super.height,
     required super.weight,
-    required super.abilities,
-    required super.sprites,
-    required super.types,
+    required List<AbilityElementModel> super.abilities,
+    required SpritesModel super.sprites,
+    required List<TypeElementModel> super.types,
   });
 
-  factory PokemonModel.fromJson(Map<String, dynamic> json) {
-    return PokemonModel(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      baseExperience: json['base_experience'] as int,
-      height: json['height'] as int,
-      weight: json['weight'] as int,
-      abilities: (json['abilities'] as List<dynamic>)
-          .map((ability) => AbilityElementModel.fromJson(json))
-          .toList(),
-      sprites: SpritesModel.fromJson(json['sprites'] as Map<String, dynamic>),
-      types: (json['types'] as List<dynamic>)
-          .map((type) => TypeElementModel.fromJson(json))
-          .toList(),
-    );
-  }
+  factory PokemonModel.fromJson(Map<String, dynamic> json) => PokemonModel(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    baseExperience: json['base_experience'] as int,
+    height: json['height'] as int,
+    weight: json['weight'] as int,
+    abilities: (json['abilities'] as List<dynamic>)
+        .map((ability) => AbilityElementModel.fromJson(json))
+        .toList(),
+    sprites: SpritesModel.fromJson(json['sprites'] as Map<String, dynamic>),
+    types: (json['types'] as List<dynamic>)
+        .map((type) => TypeElementModel.fromJson(type as Map<String, dynamic>))
+        .toList(),
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'name': name,
+    'base_experience': baseExperience,
+    'height': height,
+    'weight': weight,
+    'abilities': abilities
+        .map((ability) => (ability as AbilityElementModel).toJson())
+        .toList(),
+    'sprites': (sprites as SpritesModel).toJson(),   
+    'types': types.map((type) => (type as TypeElementModel).toJson()).toList(),      
+  };
 }

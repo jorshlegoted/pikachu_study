@@ -8,4 +8,8 @@ final class TypeElementModel extends TypeElement {
       TypeElementModel(
         type: PokemonTypeModel.fromJson(json['type'] as Map<String, dynamic>),
       );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'type': (type as PokemonTypeModel).toJson(),
+  };
 }

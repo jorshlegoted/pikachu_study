@@ -9,3 +9,10 @@ sealed class Failure with EquatableMixin implements Exception {
   @override
   List<Object?> get props => [error, stackTrace];
 }
+
+// ! -------------------- Local Storage Failures -------------------
+
+class SQFliteFailure extends Failure {
+  SQFliteFailure({super.error, super.stackTrace});
+}
+

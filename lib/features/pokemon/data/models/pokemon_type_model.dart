@@ -5,4 +5,6 @@ final class PokemonTypeModel extends PokemonType {
 
   factory PokemonTypeModel.fromJson(Map<String, dynamic> json) =>
       PokemonTypeModel(name: json['name'] as String);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{'name': name};
 }

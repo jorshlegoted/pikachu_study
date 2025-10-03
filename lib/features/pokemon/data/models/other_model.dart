@@ -4,6 +4,11 @@ import 'package:pikachi_dobre/features/pokemon/domain/entities/other.dart';
 final class OtherModel extends Other {
   OtherModel({required super.home});
 
-  factory OtherModel.fromJson(Map<String, dynamic> json) =>
-      OtherModel(home: HomeModel.fromJson(json['home'] as Map<String, dynamic>));
+  factory OtherModel.fromJson(Map<String, dynamic> json) => OtherModel(
+    home: HomeModel.fromJson(json['home'] as Map<String, dynamic>),
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'home': (home as HomeModel).toJson(),
+  };
 }
