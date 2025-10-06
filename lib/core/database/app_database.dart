@@ -17,7 +17,7 @@ class AppDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB(fileName);
+    _database = await _initDB(AppStrings.appDatabase);
     return _database!;
   }
 

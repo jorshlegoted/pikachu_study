@@ -5,11 +5,11 @@ import 'package:pikachi_dobre/core/utils/usecase/usecase.dart';
 import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
 import 'package:pikachi_dobre/features/pokemon/domain/repositories/pokemon_repository.dart';
 
-final class GetPokemonByName
+final class GetPokemonByNameUseCase
     implements UseCase<Pokemon, GetPokemonByNameParams> {
   final PokemonRepository _repository;
 
-  GetPokemonByName({required PokemonRepository repository})
+  GetPokemonByNameUseCase({required PokemonRepository repository})
     : _repository = repository;
 
   @override

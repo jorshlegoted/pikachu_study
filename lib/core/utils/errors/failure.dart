@@ -16,3 +16,12 @@ class SQFliteFailure extends Failure {
   SQFliteFailure({super.error, super.stackTrace});
 }
 
+// ! --------------- Pokenon -------------
+class PokemonFailure extends Failure {
+  PokemonFailure({super.error, super.stackTrace});
+}
+
+// ! ------------------ Network Failures ---------------
+class NetworkFailure extends Failure {
+  NetworkFailure({super.error, super.stackTrace});
+}

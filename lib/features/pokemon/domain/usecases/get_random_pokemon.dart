@@ -4,11 +4,11 @@ import 'package:pikachi_dobre/core/utils/usecase/usecase.dart';
 import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
 import 'package:pikachi_dobre/features/pokemon/domain/repositories/pokemon_repository.dart';
 
-final class GetRandomPokemon
+final class GetRandomPokemonUseCase
     implements UseCase<Pokemon, NoParams> {
   final PokemonRepository _repository;
 
-  GetRandomPokemon({required PokemonRepository repository})
+  GetRandomPokemonUseCase({required PokemonRepository repository})
     : _repository = repository;
 
   @override
