@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pikachi_dobre/core/dependencies/injection_container.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initDependencyInjection();
+  
   runApp(const MyApp());
 }
 
