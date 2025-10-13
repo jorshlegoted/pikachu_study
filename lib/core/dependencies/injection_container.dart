@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:pikachi_dobre/core/database/app_database.dart';
 import 'package:pikachi_dobre/core/utils/constants/api_keys.dart';
 import 'package:pikachi_dobre/core/utils/handlers/network_info.dart';
@@ -17,6 +18,7 @@ import 'package:pikachi_dobre/features/pokemon/presentation/bloc/pokemon_bloc.da
 final sl = GetIt.instance;
 late final AppDatabase _database;
 late final Dio _dio;
+late final InternetConnection _connectionChecker;
 late final NetworkInfo _networkInfo;
 
 Future<void> initDependencyInjection() async {
@@ -27,17 +29,20 @@ Future<void> initDependencyInjection() async {
     receiveTimeout: const Duration(seconds: 10),
   );
 
-  _database = AppDatabase.instance;
-  _networkInfo = NetworkInfoImpl(connectionChecker: sl());
+  _connectionChecker = InternetConnection();
 
   sl
     // Утилиты.
     ..registerLazySingleton<Dio>(() => _dio)
     ..registerLazySingleton<AppDatabase>(() => _database)
+    ..registerLazySingleton(() => _connectionChecker)
     ..registerLazySingleton<NetworkInfo>(() => _networkInfo);
 
+  _database = AppDatabase.instance;
+  _networkInfo = NetworkInfoImpl(connectionChecker: sl());
+
   // Инициализация покемонов.
-    _initPokemon();
+  _initPokemon();
 }
 
 void _initPokemon() {
