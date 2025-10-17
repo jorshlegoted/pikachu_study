@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pikachi_dobre/core/utils/usecase/usecase.dart';
@@ -35,7 +37,10 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     );
 
     result.fold(
-      (failure) => emit(PokemonError(message: failure.error)),
+      (failure) {
+        emit(PokemonError(message: failure.error));
+        log('Error fetching Pokemon: ${failure.error}');
+      },
       (pokemon) => emit(PokemonLoaded(pokemon: pokemon)),
     );
   }

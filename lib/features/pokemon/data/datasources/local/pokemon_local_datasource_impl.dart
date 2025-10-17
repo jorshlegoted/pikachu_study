@@ -73,8 +73,22 @@ final class PokemonLocalDatasourceImpl implements PokemonLocalDatasource {
   Future<void> writePokemon(PokemonModel pokemon) async {
     try {
       final db = await _database.database;
+      final existing = await db.query(
+        AppStrings.pokemonDatabaseName,
+        where: 'id = ?',
+        whereArgs: [pokemon.id],
+      );
 
-      await db.insert(AppStrings.pokemonDatabaseName, pokemon.toJson());
+      if (existing.isNotEmpty) {
+        await db.update(
+          AppStrings.pokemonDatabaseName,
+          pokemon.toJson(),
+          where: 'id = ?',
+          whereArgs: [pokemon.id],
+        );
+      } else {
+        await db.insert(AppStrings.pokemonDatabaseName, pokemon.toJson());
+      }
     } catch (e) {
       throw SQFliteFailure(error: 'Ошибка при сохранении покемона: $e');
     }

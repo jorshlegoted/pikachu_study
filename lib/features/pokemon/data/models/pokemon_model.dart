@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:pikachi_dobre/features/pokemon/data/mappers/ability_element.dart';
+import 'package:pikachi_dobre/features/pokemon/data/mappers/sprites_mapper.dart';
+import 'package:pikachi_dobre/features/pokemon/data/mappers/type_element_mapper.dart';
 import 'package:pikachi_dobre/features/pokemon/data/models/ability_element_model.dart';
 import 'package:pikachi_dobre/features/pokemon/data/models/sprites_model.dart';
 import 'package:pikachi_dobre/features/pokemon/data/models/type_element_model.dart';
@@ -23,7 +28,10 @@ final class PokemonModel extends Pokemon {
     height: json['height'] as int,
     weight: json['weight'] as int,
     abilities: (json['abilities'] as List<dynamic>)
-        .map((ability) => AbilityElementModel.fromJson(json))
+        .map(
+          (ability) =>
+              AbilityElementModel.fromJson(ability as Map<String, dynamic>),
+        )
         .toList(),
     sprites: SpritesModel.fromJson(json['sprites'] as Map<String, dynamic>),
     types: (json['types'] as List<dynamic>)
@@ -32,15 +40,15 @@ final class PokemonModel extends Pokemon {
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'name': name,
-    'base_experience': baseExperience,
-    'height': height,
-    'weight': weight,
-    'abilities': abilities
-        .map((ability) => (ability as AbilityElementModel).toJson())
-        .toList(),
-    'sprites': (sprites as SpritesModel).toJson(),   
-    'types': types.map((type) => (type as TypeElementModel).toJson()).toList(),      
+    'id': jsonEncode(id),
+    'name': jsonEncode(name),
+    'base_experience': jsonEncode(baseExperience),
+    'height': jsonEncode(height),
+    'weight': jsonEncode(weight),
+    'abilities': jsonEncode(
+      abilities.map((a) => a.toModel().toJson()).toList(),
+    ),
+    'sprites': jsonEncode(sprites.toModel().toJson()),
+    'types': jsonEncode(types.map((type) => type.toModel().toJson()).toList()),
   };
 }

@@ -3,7 +3,7 @@ class AppStrings {
 
   static const appDatabase = 'app_database.db';
 
-  static const pokemonDatabaseName = 'pokemon_database.db';
+  static const pokemonDatabaseName = 'pokemon';
 
   /// Ассеты изображений.
   static const background = 'assets/images/background.jpg';
