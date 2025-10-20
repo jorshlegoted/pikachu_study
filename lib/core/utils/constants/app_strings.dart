@@ -3,7 +3,7 @@ class AppStrings {
 
   static const appDatabase = 'app_database.db';
 
-  static const pokemonDatabaseName = 'pokemon';
+  static const pokemonTableName = 'pokemon';
 
   /// Ассеты изображений.
   static const background = 'assets/images/background.jpg';
@@ -17,4 +17,14 @@ class AppStrings {
   // Тексты полей
   static const pokemonNameField = 'Имя покемона';
   static const pokemonNameValidation = 'Пожалуйста, введите имя покемона';
+  static const pokemonNameNumberValidation =
+      'Имя покемона не должно содержать цифры';
+
+  /// Тексты экранов.
+  static const pokemonNameLabel = 'Имя: ';
+  static const baseExperienceLabel = 'Базовый опыт:';
+  static const heightLabel = 'Рост:';
+  static const weightLabel = 'Вес:';
+  static const abilitiesLabel = 'Способности:';
+  static const typesLabel = 'Типы:';
 }

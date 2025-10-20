@@ -26,7 +26,7 @@ final class PokemonRepositoryImpl implements PokemonRepository {
   @override
   Future<Either<Failure, Pokemon>> getPokemonByName(
     GetPokemonByNameParams params,
-  ) async { 
+  ) async {
     try {
       final hasConnection = await _networkInfo.hasConnection;
       PokemonModel? pokemon;
@@ -35,23 +35,23 @@ final class PokemonRepositoryImpl implements PokemonRepository {
         pokemon = await _remoteDatasource.getPokemonByName(params);
         await _localDatasource.writePokemon(pokemon);
 
-
         return Right(pokemon);
       } else {
         pokemon = await _localDatasource.getPokemonByName(params);
         if (pokemon == null) {
-          return Left(PokemonFailure(error: 'Покемон не найден в локальной базе данных.'));
+          return Left(
+            PokemonFailure(error: 'Покемон не найден в локальной базе данных.'),
+          );
         }
+        return Right(pokemon);
       }
-
-      return Left(PokemonFailure(error: 'Нет подключения к интернету.'));
     } catch (e) {
       return Left(PokemonFailure(error: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, Pokemon>> getRandomPokemon() async{
+  Future<Either<Failure, Pokemon>> getRandomPokemon() async {
     try {
       final random = Random();
       final id = random.nextInt(1025) + 1;
@@ -62,16 +62,17 @@ final class PokemonRepositoryImpl implements PokemonRepository {
         pokemon = await _remoteDatasource.getRandomPokemon(id);
         await _localDatasource.writePokemon(pokemon);
 
-
         return Right(pokemon);
       } else {
         pokemon = await _localDatasource.getRandomPokemon(id);
         if (pokemon == null) {
-          return Left(PokemonFailure(error: 'Покемон не найден в локальной базе данных.'));
+          return Left(
+            PokemonFailure(error: 'Покемон не найден в локальной базе данных.'),
+          );
         }
+        return Right(pokemon);
       }
 
-      return Left(PokemonFailure(error: 'Нет подключения к интернету.'));
     } catch (e) {
       return Left(PokemonFailure(error: e.toString()));
     }

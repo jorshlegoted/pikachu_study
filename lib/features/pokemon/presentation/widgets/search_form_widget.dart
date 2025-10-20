@@ -23,7 +23,10 @@ class _SearchFormWidgetState extends State<SearchFormWidget> {
       if (_pokemonName == null) return;
 
       context.read<PokemonBloc>().add(
-        GetPokemonByNameEvent(name: _pokemonName!.toLowerCase()),
+        GetPokemonByNameEvent(
+          name: _pokemonName!.toLowerCase(),
+          isFromSearch: true,
+        ),
       );
     }
   }
@@ -60,9 +63,12 @@ class _SearchFormWidgetState extends State<SearchFormWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
+              keyboardType: TextInputType.text,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.pokemonNameValidation;
+                } else if (RegExp(r'[0-9]').hasMatch(value)) {
+                  return AppStrings.pokemonNameNumberValidation;
                 }
                 return null;
               },

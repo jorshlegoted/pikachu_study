@@ -23,7 +23,7 @@ class AppDatabase {
 
   Future _createDB(Database db, int version) async {
     await db.execute('''
-CREATE TABLE ${AppStrings.pokemonDatabaseName} (
+CREATE TABLE ${AppStrings.pokemonTableName} (
 id $idType,
 name $textType,
 base_experience $integerType,

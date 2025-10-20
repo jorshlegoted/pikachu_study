@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:pikachi_dobre/core/database/app_database.dart';
 import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
 import 'package:pikachi_dobre/core/utils/errors/failure.dart';
@@ -12,18 +14,52 @@ final class PokemonLocalDatasourceImpl implements PokemonLocalDatasource {
     : _database = database;
 
   @override
+  Future<void> writePokemon(PokemonModel pokemon) async {
+    try {
+      final db = await _database.database;
+      final existing = await db.query(
+        AppStrings.pokemonTableName,
+        where: 'id = ?',
+        whereArgs: [pokemon.id],
+      );
+
+      if (existing.isNotEmpty) {
+        await db.update(
+          AppStrings.pokemonTableName,
+          pokemon.toJson(),
+          where: 'id = ?',
+          whereArgs: [pokemon.id],
+        );
+      } else {
+        await db.insert(AppStrings.pokemonTableName, pokemon.toJson());
+      }
+    } catch (e) {
+      throw SQFliteFailure(error: 'Ошибка при сохранении покемона: $e');
+    }
+  }
+
+  @override
   Future<PokemonModel> getPokemonByName(GetPokemonByNameParams params) async {
     try {
       final db = await _database.database;
 
+      final allPokemons = await db.query(AppStrings.pokemonTableName);
+      print('All pokemons in DB: $allPokemons');
+
       final maps = await db.query(
-        AppStrings.pokemonDatabaseName,
+        AppStrings.pokemonTableName,
         where: 'name = ?',
         whereArgs: [params.name],
       );
 
       if (maps.isNotEmpty) {
-        return PokemonModel.fromJson(maps.first);
+        final map = Map<String, dynamic>.from(maps.first);
+
+        map['abilities'] = jsonDecode(map['abilities']) as List<dynamic>;
+        map['sprites'] = jsonDecode(map['sprites']) as Map<String, dynamic>;
+        map['types'] = jsonDecode(map['types']) as List<dynamic>;
+
+        return PokemonModel.fromJson(map);
       } else {
         throw SQFliteFailure(
           error:
@@ -41,7 +77,7 @@ final class PokemonLocalDatasourceImpl implements PokemonLocalDatasource {
       final db = await _database.database;
 
       final maps = await db.query(
-        AppStrings.pokemonDatabaseName,
+        AppStrings.pokemonTableName,
         where: 'name = ?',
         whereArgs: [id],
       );
@@ -63,34 +99,9 @@ final class PokemonLocalDatasourceImpl implements PokemonLocalDatasource {
     try {
       final db = await _database.database;
 
-      await db.delete(AppStrings.pokemonDatabaseName);
+      await db.delete(AppStrings.pokemonTableName);
     } catch (e) {
       throw SQFliteFailure(error: 'Ошибка при очистке кэша: $e');
-    }
-  }
-
-  @override
-  Future<void> writePokemon(PokemonModel pokemon) async {
-    try {
-      final db = await _database.database;
-      final existing = await db.query(
-        AppStrings.pokemonDatabaseName,
-        where: 'id = ?',
-        whereArgs: [pokemon.id],
-      );
-
-      if (existing.isNotEmpty) {
-        await db.update(
-          AppStrings.pokemonDatabaseName,
-          pokemon.toJson(),
-          where: 'id = ?',
-          whereArgs: [pokemon.id],
-        );
-      } else {
-        await db.insert(AppStrings.pokemonDatabaseName, pokemon.toJson());
-      }
-    } catch (e) {
-      throw SQFliteFailure(error: 'Ошибка при сохранении покемона: $e');
     }
   }
 }

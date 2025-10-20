@@ -19,9 +19,9 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   }) : _getPokemonByNameUseCase = getPokemonByNameUseCase,
        _getRandomPokemonUseCase = getRandomPokemonUseCase,
        super(const PokemonLoading()) {
-        on<GetPokemonByNameEvent>(_onGetPokemonByName);
-        on<GetRandomPokemonEvent>(_onGetRandomPokemon);
-       }
+    on<GetPokemonByNameEvent>(_onGetPokemonByName);
+    on<GetRandomPokemonEvent>(_onGetRandomPokemon);
+  }
 
   final GetPokemonByNameUseCase _getPokemonByNameUseCase;
   final GetRandomPokemonUseCase _getRandomPokemonUseCase;
@@ -41,7 +41,9 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         emit(PokemonError(message: failure.error));
         log('Error fetching Pokemon: ${failure.error}');
       },
-      (pokemon) => emit(PokemonLoaded(pokemon: pokemon)),
+      (pokemon) => emit(
+        PokemonLoaded(pokemon: pokemon, isFromSearch: event.isFromSearch),
+      ),
     );
   }
 

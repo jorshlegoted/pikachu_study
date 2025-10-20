@@ -40,11 +40,11 @@ final class PokemonModel extends Pokemon {
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': jsonEncode(id),
-    'name': jsonEncode(name),
-    'base_experience': jsonEncode(baseExperience),
-    'height': jsonEncode(height),
-    'weight': jsonEncode(weight),
+    'id': id,
+    'name': name,
+    'base_experience': baseExperience,
+    'height': height,
+    'weight': weight,
     'abilities': jsonEncode(
       abilities.map((a) => a.toModel().toJson()).toList(),
     ),
