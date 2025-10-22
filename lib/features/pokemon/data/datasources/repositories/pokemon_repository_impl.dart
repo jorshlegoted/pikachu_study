@@ -38,11 +38,6 @@ final class PokemonRepositoryImpl implements PokemonRepository {
         return Right(pokemon);
       } else {
         pokemon = await _localDatasource.getPokemonByName(params);
-        if (pokemon == null) {
-          return Left(
-            PokemonFailure(error: 'Покемон не найден в локальной базе данных.'),
-          );
-        }
         return Right(pokemon);
       }
     } catch (e) {
@@ -65,11 +60,6 @@ final class PokemonRepositoryImpl implements PokemonRepository {
         return Right(pokemon);
       } else {
         pokemon = await _localDatasource.getRandomPokemon(id);
-        if (pokemon == null) {
-          return Left(
-            PokemonFailure(error: 'Покемон не найден в локальной базе данных.'),
-          );
-        }
         return Right(pokemon);
       }
 

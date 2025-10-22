@@ -8,6 +8,12 @@ abstract interface class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
 
+abstract interface class StreamUseCase<Type, Params> {
+  const StreamUseCase();
+
+  Stream<Either<Failure, Type>> call(Params params);
+}
+
 class NoParams extends Equatable {
   const NoParams();
   

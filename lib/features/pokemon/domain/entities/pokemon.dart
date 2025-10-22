@@ -13,7 +13,7 @@ class Pokemon extends Equatable {
   final Sprites sprites;
   final List<TypeElement> types;
 
-  Pokemon({
+  const Pokemon({
     required this.id,
     required this.name,
     required this.baseExperience,

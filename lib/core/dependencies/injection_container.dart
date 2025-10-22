@@ -4,6 +4,10 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'package:pikachi_dobre/core/database/app_database.dart';
 import 'package:pikachi_dobre/core/utils/constants/api_keys.dart';
 import 'package:pikachi_dobre/core/utils/handlers/network_info.dart';
+import 'package:pikachi_dobre/features/connection_checker/data/repositories/connection_checker_repository_impl.dart';
+import 'package:pikachi_dobre/features/connection_checker/domain/repositories/connection_checker_repository.dart';
+import 'package:pikachi_dobre/features/connection_checker/domain/usecases/listen_connection_usecase.dart';
+import 'package:pikachi_dobre/features/connection_checker/presentation/cubit/connection_checker_cubit.dart';
 import 'package:pikachi_dobre/features/pokemon/data/datasources/local/pokemon_local_datasource.dart';
 import 'package:pikachi_dobre/features/pokemon/data/datasources/local/pokemon_local_datasource_impl.dart';
 import 'package:pikachi_dobre/features/pokemon/data/datasources/remote/pokemon_remote_datasource.dart';
@@ -43,6 +47,9 @@ Future<void> initDependencyInjection() async {
 
   // Инициализация покемонов.
   _initPokemon();
+
+  // Инициализация проверки соединени
+  _initConnectionChecker();
 }
 
 void _initPokemon() {
@@ -75,5 +82,21 @@ void _initPokemon() {
     )
     ..registerLazySingleton<PokemonLocalDatasource>(
       () => PokemonLocalDatasourceImpl(database: sl()),
+    );
+}
+
+void _initConnectionChecker() {
+  sl
+    // Cubits.
+    ..registerFactory<ConnectionCheckerCubit>(
+      () => ConnectionCheckerCubit(listenConnectionUsecase: sl()),
+    )
+    // UseCases.
+    ..registerLazySingleton<ListenConnectionUsecase>(
+      () => ListenConnectionUsecase(repository: sl()),
+    )
+    // Repositories
+    ..registerLazySingleton<ConnectionCheckerRepository>(
+      () => ConnectionCheckerRepositoryImpl(networkInfo: sl()),
     );
 }

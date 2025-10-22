@@ -25,3 +25,8 @@ class PokemonFailure extends Failure {
 class NetworkFailure extends Failure {
   NetworkFailure({super.error, super.stackTrace});
 }
+
+// ! ----------------- Connection Checker ------------------
+class ConnectionFailure extends Failure {
+  ConnectionFailure({super.error, super.stackTrace});
+}

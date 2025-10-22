@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pikachi_dobre/core/utils/constants/app_colors.dart';
 import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
 

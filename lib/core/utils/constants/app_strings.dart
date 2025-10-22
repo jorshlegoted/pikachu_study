@@ -27,4 +27,9 @@ class AppStrings {
   static const weightLabel = 'Вес:';
   static const abilitiesLabel = 'Способности:';
   static const typesLabel = 'Типы:';
+
+  /// Сообщения.
+  static const noInternetConnectionMessage = 'Нет подключения к интернету';
+  static const hasInternetConnectionMessage =
+      'Подключение к интернету восстановлено';
 }
