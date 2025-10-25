@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:pikachi_dobre/core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_colors.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/bloc/pokemon_bloc.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/screens/pokemon_details_screen.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 class SearchFormWidget extends StatefulWidget {
   const SearchFormWidget({super.key});
@@ -42,7 +39,7 @@ class _SearchFormWidgetState extends State<SearchFormWidget> {
         ),
         PokemonError(:final message) =>
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message ?? 'Что-то пошло не так')),
+            SnackBar(content: Text(message ?? AppConstants.strings.somethingWentWrongMessage)),
           ),
         _ => null,
       },
@@ -51,33 +48,28 @@ class _SearchFormWidgetState extends State<SearchFormWidget> {
         child: Column(
           children: [
             TextFormField(
-              onChanged: (value) {
-                print('Current input: $value');
-              },
               decoration: InputDecoration(
-                focusColor: AppColors.primary,
-
-                labelText: AppStrings.pokemonNameField,
+                focusColor: AppConstants.colors.primary,
+                labelText: AppConstants.strings.pokemonNameField,
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.primary),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
               keyboardType: TextInputType.text,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return AppStrings.pokemonNameValidation;
+                  return AppConstants.strings.pokemonNameValidation;
                 } else if (RegExp(r'[0-9]').hasMatch(value)) {
-                  return AppStrings.pokemonNameNumberValidation;
+                  return AppConstants.strings.pokemonNameNumberValidation;
                 }
                 return null;
               },
               onSaved: (newValue) => _pokemonName = newValue,
             ),
-            SizedBox(height: 16.0),
+            AppConstants.sizedBoxes.verticalSizedBox16,
             ElevatedButton(
               onPressed: _onPressed,
-              child: Text(AppStrings.findPokemonButton),
+              child: Text(AppConstants.strings.findPokemonButton),
             ),
           ],
         ),

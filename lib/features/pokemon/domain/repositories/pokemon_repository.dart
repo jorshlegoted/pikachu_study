@@ -1,7 +1,5 @@
-import 'package:either_dart/either.dart';
-import 'package:pikachi_dobre/core/utils/errors/failure.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/usecases/get_pokemon_by_name.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 abstract interface class PokemonRepository {
   Future<Either<Failure, Pokemon>> getPokemonByName(

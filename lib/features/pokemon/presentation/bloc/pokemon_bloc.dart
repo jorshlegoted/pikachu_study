@@ -1,11 +1,8 @@
 import 'dart:developer';
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pikachi_dobre/core/utils/usecase/usecase.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/usecases/get_pokemon_by_name.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/usecases/get_random_pokemon.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
+
 
 part 'pokemon_event.dart';
 part 'pokemon_state.dart';
@@ -39,7 +36,6 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     result.fold(
       (failure) {
         emit(PokemonError(message: failure.error));
-        log('Error fetching Pokemon: ${failure.error}');
       },
       (pokemon) => emit(
         PokemonLoaded(pokemon: pokemon, isFromSearch: event.isFromSearch),

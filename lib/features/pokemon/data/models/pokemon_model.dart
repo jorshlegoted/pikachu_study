@@ -1,12 +1,5 @@
 import 'dart:convert';
-
-import 'package:pikachi_dobre/features/pokemon/data/mappers/ability_element.dart';
-import 'package:pikachi_dobre/features/pokemon/data/mappers/sprites_mapper.dart';
-import 'package:pikachi_dobre/features/pokemon/data/mappers/type_element_mapper.dart';
-import 'package:pikachi_dobre/features/pokemon/data/models/ability_element_model.dart';
-import 'package:pikachi_dobre/features/pokemon/data/models/sprites_model.dart';
-import 'package:pikachi_dobre/features/pokemon/data/models/type_element_model.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 // DTO модель для Pokemon.
 final class PokemonModel extends Pokemon {

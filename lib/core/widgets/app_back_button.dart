@@ -1,29 +1,25 @@
-import 'package:flutter/material.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_colors.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 class AppBackButton extends StatelessWidget {
-  const AppBackButton({
-    super.key,
-  });
+  const AppBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: IconButton(
-        iconSize: 50,
-        color: AppColors.primary,
+        iconSize: AppConstants.sizes.commonSize50,
+        color: AppConstants.colors.primary,
         onPressed: () => Navigator.pop(context),
         icon: Row(
           children: [
             Icon(Icons.chevron_left),
             Text(
-              AppStrings.backButton,
+              AppConstants.strings.backButton,
               style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primary,
+                fontSize: AppConstants.sizes.commonSize24,
+                fontWeight: FontWeight.w800,
+                color: AppConstants.colors.primary,
               ),
             ),
           ],

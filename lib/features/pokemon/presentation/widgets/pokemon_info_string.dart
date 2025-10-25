@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_paddings.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_sized_boxes.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 class PokemonInfoString extends StatelessWidget {
   const PokemonInfoString({
@@ -18,8 +16,8 @@ class PokemonInfoString extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppPaddings.screenPadding,
+      padding: EdgeInsets.symmetric(
+        horizontal: AppConstants.sizes.commonSize16,
       ),
       child: Row(
         children: [
@@ -29,7 +27,7 @@ class PokemonInfoString extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          AppSizedBoxes.horizontalSmallSizedBox,
+          AppConstants.sizedBoxes.horizontalSizedBox8,
           Text(_value, style: theme.textTheme.headlineMedium),
         ],
       ),

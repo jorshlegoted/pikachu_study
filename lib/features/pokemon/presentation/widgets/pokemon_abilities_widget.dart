@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_paddings.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 class PokemonAbilitiesWidget extends StatelessWidget {
   const PokemonAbilitiesWidget({super.key, required Pokemon pokemon})
@@ -17,19 +15,19 @@ class PokemonAbilitiesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppPaddings.screenPadding,
+          padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.sizes.commonSize16,
           ),
           child: Text(
-            AppStrings.abilitiesLabel,
+            AppConstants.strings.abilitiesLabel,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
         ListView.builder(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppPaddings.screenPadding,
+          padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.sizes.commonSize16,
           ),
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),

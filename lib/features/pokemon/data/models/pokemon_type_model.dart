@@ -1,4 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon_type.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class PokemonTypeModel extends PokemonType {
   const PokemonTypeModel({required super.name});

@@ -1,4 +1,4 @@
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 abstract interface class NetworkInfo {
   Stream<InternetStatus> onStatusChange();

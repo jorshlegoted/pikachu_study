@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+part of 'app_constants.dart';
 
 class AppColors {
-  AppColors._();
+  const AppColors._();
 
   // Основной цвет
-  static const primary = Color.fromARGB(255, 134, 69, 0);
+  Color get primary => Color.fromARGB(255, 134, 69, 0);
 }

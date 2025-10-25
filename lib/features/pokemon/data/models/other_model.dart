@@ -1,5 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/data/models/home_model.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/other.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class OtherModel extends Other {
   OtherModel({required super.home});

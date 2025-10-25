@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 class Ability extends Equatable {
   final String name;

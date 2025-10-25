@@ -1,5 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/data/models/ability_model.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/ability_element.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class AbilityElementModel extends AbilityElement {
   const AbilityElementModel({required super.ability});

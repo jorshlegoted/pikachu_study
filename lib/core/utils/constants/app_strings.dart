@@ -1,35 +1,39 @@
+part of 'app_constants.dart';
+
 class AppStrings {
-  AppStrings._();
+  const AppStrings._();
 
-  static const appDatabase = 'app_database.db';
+  String get appDatabase => 'app_database.db';
 
-  static const pokemonTableName = 'pokemon';
+  String get pokemonTableName => 'pokemon';
 
   /// Ассеты изображений.
-  static const background = 'assets/images/background.jpg';
-  static const logo = 'assets/images/logo.png';
+  String get background => 'assets/images/background.jpg';
+  String get logo => 'assets/images/logo.png';
 
   /// Тексты кнопок.
-  static const findPokemonButton = 'Найти покемона';
-  static const randomPokemonButton = 'Случайный покемон';
-  static const backButton = 'Назад';
+  String get findPokemonButton => 'Найти покемона';
+  String get randomPokemonButton => 'Случайный покемон';
+  String get backButton => 'Назад';
 
   // Тексты полей
-  static const pokemonNameField = 'Имя покемона';
-  static const pokemonNameValidation = 'Пожалуйста, введите имя покемона';
-  static const pokemonNameNumberValidation =
+  String get pokemonNameField => 'Имя покемона';
+  String get pokemonNameValidation => 'Пожалуйста, введите имя покемона';
+  String get pokemonNameNumberValidation =>
       'Имя покемона не должно содержать цифры';
 
   /// Тексты экранов.
-  static const pokemonNameLabel = 'Имя: ';
-  static const baseExperienceLabel = 'Базовый опыт:';
-  static const heightLabel = 'Рост:';
-  static const weightLabel = 'Вес:';
-  static const abilitiesLabel = 'Способности:';
-  static const typesLabel = 'Типы:';
+  String get pokemonNameLabel => 'Имя: ';
+  String get baseExperienceLabel => 'Базовый опыт:';
+  String get heightLabel => 'Рост:';
+  String get weightLabel => 'Вес:';
+  String get abilitiesLabel => 'Способности:';
+  String get typesLabel => 'Типы:';
 
   /// Сообщения.
-  static const noInternetConnectionMessage = 'Нет подключения к интернету';
-  static const hasInternetConnectionMessage =
+  String get noInternetConnectionMessage => 'Нет подключения к интернету';
+  String get hasInternetConnectionMessage =>
       'Подключение к интернету восстановлено';
+  String get noImageAvailable => 'Изображение недоступно';
+  String get somethingWentWrongMessage => 'Что-то пошло не так';
 }

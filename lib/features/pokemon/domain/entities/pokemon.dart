@@ -1,7 +1,5 @@
-import 'package:equatable/equatable.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/ability_element.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/sprites.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/type_element.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 class Pokemon extends Equatable {
   final int id;

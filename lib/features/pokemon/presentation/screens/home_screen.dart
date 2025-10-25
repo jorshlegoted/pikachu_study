@@ -1,11 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
-import 'package:pikachi_dobre/core/widgets/app_scaffold.dart';
-import 'package:pikachi_dobre/features/connection_checker/presentation/cubit/connection_checker_cubit.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/bloc/pokemon_bloc.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/screens/find_pokemon_screen.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/screens/pokemon_details_screen.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,23 +21,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocListener<ConnectionCheckerCubit, ConnectionCheckerState>(
       listener: (_, state) => state.hasConnection
           ? ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppStrings.hasInternetConnectionMessage)),
+              SnackBar(content: Text(AppConstants.strings.hasInternetConnectionMessage)),
             )
           : ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppStrings.noInternetConnectionMessage)),
+              SnackBar(content: Text(AppConstants.strings.noInternetConnectionMessage)),
             ),
       child: AppScaffold(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(AppStrings.logo, scale: 9),
+            Image.asset(AppConstants.strings.logo, scale: 9),
             Column(
               children: [
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => FindPokemonScreen()),
                   ),
-                  child: Text(AppStrings.findPokemonButton),
+                  child: Text(AppConstants.strings.findPokemonButton),
                 ),
                 BlocListener<PokemonBloc, PokemonState>(
                   listenWhen: (_, current) {
@@ -69,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () => context.read<PokemonBloc>().add(
                       GetRandomPokemonEvent(),
                     ),
-                    child: Text(AppStrings.randomPokemonButton),
+                    child: Text(AppConstants.strings.randomPokemonButton),
                   ),
                 ),
               ],

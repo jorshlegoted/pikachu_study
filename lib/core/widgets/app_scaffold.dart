@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({required Widget child, super.key}) : _child = child;
@@ -13,7 +12,7 @@ class AppScaffold extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppStrings.background),
+            image: AssetImage(AppConstants.strings.background),
             fit: BoxFit.cover,
           ),
         ),

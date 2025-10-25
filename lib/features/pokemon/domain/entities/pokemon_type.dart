@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 class PokemonType extends Equatable{
   const PokemonType({required this.name});

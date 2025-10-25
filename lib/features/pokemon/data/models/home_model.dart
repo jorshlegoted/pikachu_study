@@ -1,4 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/domain/entities/home.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class HomeModel extends Home {
   const HomeModel({required super.frontDefault});

@@ -1,5 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/data/models/pokemon_type_model.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/type_element.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class TypeElementModel extends TypeElement {
   TypeElementModel({required super.type});

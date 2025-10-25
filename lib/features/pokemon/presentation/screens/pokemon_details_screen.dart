@@ -1,16 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_paddings.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_sized_boxes.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
-import 'package:pikachi_dobre/core/widgets/app_back_button.dart';
-import 'package:pikachi_dobre/core/widgets/app_scaffold.dart';
-import 'package:pikachi_dobre/features/connection_checker/presentation/cubit/connection_checker_cubit.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/pokemon.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/widgets/pokemon_abilities_widget.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/widgets/pokemon_info_string.dart';
-import 'package:pikachi_dobre/features/pokemon/presentation/widgets/pokemon_types_widget.dart';
+import 'package:pikachi_dobre/core/core.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 class PokemonDetailsScreen extends StatelessWidget {
   const PokemonDetailsScreen({required Pokemon pokemon, super.key})
@@ -25,10 +14,16 @@ class PokemonDetailsScreen extends StatelessWidget {
     return BlocListener<ConnectionCheckerCubit, ConnectionCheckerState>(
       listener: (_, state) => state.hasConnection
           ? ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppStrings.hasInternetConnectionMessage)),
+              SnackBar(
+                content: Text(
+                  AppConstants.strings.hasInternetConnectionMessage,
+                ),
+              ),
             )
           : ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppStrings.noInternetConnectionMessage)),
+              SnackBar(
+                content: Text(AppConstants.strings.noInternetConnectionMessage),
+              ),
             ),
       child: AppScaffold(
         child: Column(
@@ -38,9 +33,9 @@ class PokemonDetailsScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    left: AppPaddings.screenPadding,
-                    right: AppPaddings.screenPadding,
-                    bottom: AppPaddings.screenPadding,
+                    left: AppConstants.sizes.commonSize16,
+                    right: AppConstants.sizes.commonSize16,
+                    bottom: AppConstants.sizes.commonSize16,
                     child: Container(
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surface.withValues(alpha: 0.5),
@@ -56,7 +51,7 @@ class PokemonDetailsScreen extends StatelessWidget {
                                 imageUrl:
                                     _pokemon.sprites.other.home.frontDefault!,
                               )
-                            : Text('No image available'),
+                            : Text(AppConstants.strings.noImageAvailable),
                       ),
                     ],
                   ),
@@ -65,8 +60,8 @@ class PokemonDetailsScreen extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppPaddings.screenPadding,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.sizes.commonSize16,
                       ),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.4,
@@ -74,24 +69,24 @@ class PokemonDetailsScreen extends StatelessWidget {
                           shrinkWrap: true,
                           children: [
                             PokemonInfoString(
-                              title: AppStrings.pokemonNameLabel,
+                              title: AppConstants.strings.pokemonNameLabel,
                               value: _pokemon.name,
                             ),
                             PokemonInfoString(
-                              title: AppStrings.baseExperienceLabel,
+                              title: AppConstants.strings.baseExperienceLabel,
                               value: _pokemon.baseExperience.toString(),
                             ),
                             PokemonInfoString(
-                              title: AppStrings.heightLabel,
+                              title: AppConstants.strings.heightLabel,
                               value: _pokemon.height.toString(),
                             ),
                             PokemonInfoString(
-                              title: AppStrings.weightLabel,
+                              title: AppConstants.strings.weightLabel,
                               value: _pokemon.weight.toString(),
                             ),
                             PokemonAbilitiesWidget(pokemon: _pokemon),
                             PokemonTypesWidget(pokemon: _pokemon),
-                            AppSizedBoxes.verticalSmallSizedBox,
+                            AppConstants.sizedBoxes.verticalSizedBox8,
                           ],
                         ),
                       ),

@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
 sealed class Failure with EquatableMixin implements Exception {
   final String? error;

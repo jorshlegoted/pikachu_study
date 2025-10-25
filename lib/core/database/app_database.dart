@@ -1,6 +1,6 @@
 import 'package:path/path.dart';
-import 'package:pikachi_dobre/core/utils/constants/app_strings.dart';
-import 'package:sqflite/sqflite.dart';
+
+import 'package:pikachi_dobre/core/core.dart';
 
 const idType = 'INTEGER PRIMARY KEY';
 const integerType = 'INTEGER NOT NULL';
@@ -17,13 +17,13 @@ class AppDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB(AppStrings.appDatabase);
+    _database = await _initDB(AppConstants.strings.appDatabase);
     return _database!;
   }
 
   Future _createDB(Database db, int version) async {
     await db.execute('''
-CREATE TABLE ${AppStrings.pokemonTableName} (
+CREATE TABLE ${AppConstants.strings.pokemonTableName} (
 id $idType,
 name $textType,
 base_experience $integerType,

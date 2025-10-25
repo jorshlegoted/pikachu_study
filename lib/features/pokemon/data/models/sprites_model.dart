@@ -1,5 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/data/models/other_model.dart';
-import 'package:pikachi_dobre/features/pokemon/domain/entities/sprites.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class SpritesModel extends Sprites {
   SpritesModel({required super.other});

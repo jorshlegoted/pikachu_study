@@ -1,17 +1,15 @@
-import 'package:either_dart/either.dart';
-import 'package:equatable/equatable.dart';
-import 'package:pikachi_dobre/core/utils/errors/failure.dart';
+import 'package:pikachi_dobre/core/core.dart';
 
-abstract interface class UseCase<Type, Params> {
+abstract interface class UseCase<T, Params> {
   const UseCase();
 
-  Future<Either<Failure, Type>> call(Params params);
+  Future<Either<Failure, T>> call(Params params);
 }
 
-abstract interface class StreamUseCase<Type, Params> {
+abstract interface class StreamUseCase<T, Params> {
   const StreamUseCase();
 
-  Stream<Either<Failure, Type>> call(Params params);
+  Stream<Either<Failure, T>> call(Params params);
 }
 
 class NoParams extends Equatable {

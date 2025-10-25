@@ -1,4 +1,4 @@
-import 'package:pikachi_dobre/features/pokemon/domain/entities/ability.dart';
+import 'package:pikachi_dobre/features/features.dart';
 
 final class AbilityModel extends Ability {
   const AbilityModel({required super.name});
